@@ -5,10 +5,9 @@ import {bindActionCreators} from "redux";
 
 import * as ActionCreator from '../../state/actionCreators/ActionCreator';
 
-export const StudentFormJs = ({s = false, student}) => {
+export const StudentFormJs = () => {
 
-    const [show, setShow] = useState(true);
-
+    const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -18,7 +17,7 @@ export const StudentFormJs = ({s = false, student}) => {
     const [img, setImg] = useState("");
     const [description, setDescription] = useState("");
     const [address, setAddress] = useState("");
-    const [createdAt, setCreatedAt] = useState(new Date());
+    const [createdAt] = useState(new Date());
 
     const {addNewStudent} = bindActionCreators(ActionCreator, useDispatch());
 

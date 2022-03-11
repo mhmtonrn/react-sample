@@ -12,7 +12,7 @@ export const REQ_TYPE = {
 
 const API = axios.create({
     baseURL: BASE_URL,
-    timeout: 1000,
+    timeout: 10000,
     headers: {
         Authentication: 'Bearer ' + localStorage.getItem('token')
     }

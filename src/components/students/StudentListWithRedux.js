@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {Button} from "react-bootstrap";
 import {Student} from "./Student";
 import {StudentFormJs} from "./StudentFormJs";
@@ -13,19 +13,12 @@ import * as ActionCreator from "../../state/actionCreators/ActionCreator";
 export const StudentListWithRedux = () => {
 
     const dispact = useDispatch();
-    const {addNewStudentBulk,removeStudent,removeStudentBulk,updateStudent} = bindActionCreators(ActionCreator, dispact);
+    const {addNewStudentBulk,removeStudent,removeStudentBulk} = bindActionCreators(ActionCreator, dispact);
     const studentState = useSelector(state => state.students);
-    const [editStudent2, setEditStudent2]=useState(null)
-    const [editable, setEditable]=useState(false)
 
 
     const removeStudentAction = (student) => {
         removeStudent(student)
-    }
-    const editStudentAction = (student) => {
-        debugger
-        setEditStudent2(student)
-        setEditable(!editable)
     }
 
     const addStudentBulkInsert = (studentsDate) => {
@@ -47,7 +40,7 @@ export const StudentListWithRedux = () => {
     }, [])
 
     return <div>
-        {editable && <StudentFormJs s={editStudent2} student={editStudent2} editable={setEditable}/>}
+        <StudentFormJs  />
         <hr/>
         <Button onClick={addStudentBulkInsert}> Toplu Kayıt</Button>
 
@@ -56,7 +49,7 @@ export const StudentListWithRedux = () => {
         <hr/>
         <div className={"row"}>
             {studentState.students.map(student => <div className={"col-lg-4 col-md-6 col-sm-12 py-3"} key={student.no}>
-            <Student student={student} removeStudentAction={removeStudentAction} editStudentAction={editStudentAction}/>
+            <Student student={student} removeStudentAction={removeStudentAction} editStudentAction={removeStudentAction}/>
             </div>)}
         </div>
 
